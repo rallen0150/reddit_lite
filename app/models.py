@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-import datetime
+from datetime import datetime, timedelta
 
 
 # Create your models here.
@@ -12,17 +12,17 @@ class Subreddit(models.Model):
     def __str__(self):
         return self.name
 
-    @property
+
     def current_count(self):
         return Post.objects.filter(subreddit=self).count()
 
     def today_count(self):
-        x = datetime.datetime.now() - datetime.timedelta(days=1)
-        return Post.objects.filter(subreddit=self).filter(post_created__gte=x).count()
+        day = datetime.now() - timedelta(days=1)
+        return Post.objects.filter(subreddit=self).filter(post_created__gte=day).count()
 
     def daily_avg(self):
-        x = datetime.datetime.now() - datetime.timedelta(days=7)
-        return round((Post.objects.filter(subreddit=self).filter(post_created__gte=x).count())/7, 3)
+        day = datetime.now() - timedelta(days=7)
+        return round((Post.objects.filter(subreddit=self).filter(post_created__gte=day).count())/7, 3)
 
 class Post(models.Model):
     title = models.CharField(max_length=100)
@@ -37,7 +37,10 @@ class Post(models.Model):
         return self.title
 
     def is_recent(self):
-        pass
+        last_day = datetime.now() - timedelta(days=1)
+        if Post.objects.filter(post_created__gte=last_day):
+            return True
+
 
     def is_hot(self):
         pass
