@@ -8,7 +8,8 @@
 {% for sub in all_sub %}
 <li><a href="#">{{ sub }}</a></li>
 Total Subreddit Post Count: {{ sub.current_count }} <br>
-Total Posts Today: {{ sub.today_count }}
+Total Posts Today: {{ sub.today_count }} <br>
+Average Posts/Day: {{ sub.daily_avg }}
 {% endfor %}
 
 

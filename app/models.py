@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 import datetime
-from django.utils import timezone
 
 
 # Create your models here.
@@ -22,7 +21,8 @@ class Subreddit(models.Model):
         return Post.objects.filter(subreddit=self).filter(post_created__gte=x).count()
 
     def daily_avg(self):
-        pass
+        x = datetime.datetime.now() - datetime.timedelta(days=7)
+        return round((Post.objects.filter(subreddit=self).filter(post_created__gte=x).count())/7, 3)
 
 class Post(models.Model):
     title = models.CharField(max_length=100)
