@@ -20,4 +20,10 @@ Average Posts/Day: {{ sub.daily_avg }} <br>
 <br>
 {% endfor %}
 
+<h3>Comments</h3>
+{% for post in all_post %}
+{{ post }} <br>
+{{ post.is_hot }}<br>
+<br>
+{% endfor %}
 {% endblock %}

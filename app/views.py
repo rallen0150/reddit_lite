@@ -5,6 +5,6 @@ from app.models import Subreddit, Post, Comment
 def index_view(request):
     context = {
         "all_sub": Subreddit.objects.all(),
-        "all_post": Post.objects.all()
+        "all_post": Post.objects.all(),
     }
     return render(request, "index.html", context)

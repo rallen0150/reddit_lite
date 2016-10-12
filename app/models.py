@@ -40,10 +40,16 @@ class Post(models.Model):
         last_day = datetime.now() - timedelta(days=1)
         if Post.objects.filter(post_created__gte=last_day):
             return True
+        else:
+            return False
 
 
     def is_hot(self):
-        pass
+        past_hour = datetime.now() - timedelta(hours=3)
+        if Comment.objects.filter(comment_post=self).filter(comment_created__gt=past_hour).count() > 3:
+            return True
+        else:
+            return False
 
 class Comment(models.Model):
     comment = models.CharField(max_length=255)
@@ -51,3 +57,6 @@ class Comment(models.Model):
     comment_edit = models.DateTimeField(auto_now=True)
     comment_user = models.ForeignKey(User)
     comment_post = models.ForeignKey(Post)
+
+    def __str__(self):
+        return self.comment
