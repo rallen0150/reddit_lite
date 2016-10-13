@@ -23,6 +23,9 @@ class Subreddit(models.Model):
         day = datetime.now() - timedelta(days=7)
         return round((Post.objects.filter(subreddit=self).filter(post_created__gte=day).count())/7, 3)
 
+    def get_recent(self):
+        return Post.objects.filter(subreddit=self).order_by('-post_created')[:20]
+
 class Post(models.Model):
     title = models.CharField(max_length=100)
     post_description = models.CharField(max_length=255)

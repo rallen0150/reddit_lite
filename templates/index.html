@@ -1,29 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Not Quite Reddit!</h1>
-
-
-<h3>Subreddits</h3>
-{% for sub in all_sub %}
-<a href="#">{{ sub }}</a> <br>
-Total Subreddit Post Count: {{ sub.current_count }} <br>
-Total Posts Today: {{ sub.today_count }} <br>
-Average Posts/Day: {{ sub.daily_avg }} <br>
+<h1>Not Quite Reddit</h1>
 <br>
-{% endfor %}
-
-<h3>Posts</h3>
-{% for posts in all_post %}
-{{ posts }} <br>
-{{ posts.is_recent }} <br>
-<br>
-{% endfor %}
-
-<h3>Comments</h3>
-{% for post in all_post %}
-{{ post }} <br>
-{{ post.is_hot }}<br>
-<br>
-{% endfor %}
+<h2><a href="{% url 'subreddit_view' %}">Enter the Site</a></h2>
 {% endblock %}
