@@ -22,3 +22,11 @@ class SubredditUpdateView(UpdateView):
 
 class SubredditDetailView(DetailView):
     model = Subreddit
+
+class PostDetailView(DetailView):
+    model = Post
+
+class PostCreateView(CreateView):
+    model = Post
+    success_url = "/subreddit"
+    fields = ['title', 'post_description', 'url_page']

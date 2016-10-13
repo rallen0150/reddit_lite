@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>{{ object }}</h1>
+<h3>{{ object.post_description }}</h3>
+Is this post recent(within 24 hrs)? {{ post.is_recent }}<br> <br>
+{% for comment in object.get_comment %}
+<li>
+  {{ comment }}<br>
+  Created {{ comment.comment_created|timesince }} ago.<br> <br>
+</li>
+{% endfor %}
+{% endblock %}

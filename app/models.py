@@ -52,6 +52,9 @@ class Post(models.Model):
         else:
             return False
 
+    def get_comment(self):
+        return Comment.objects.filter(comment_post=self)
+
 class Comment(models.Model):
     comment = models.CharField(max_length=255)
     comment_created = models.DateTimeField(auto_now_add=True)

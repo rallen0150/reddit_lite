@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+<a href="{% url 'subreddit_create_view' %}">Create Subreddits</a>
 <h1>Subreddits</h1>
 {% for sub in object_list %}
 <h4><a href="{% url 'subreddit_detail_view' sub.id %}">{{ sub }}</a></h4>

@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
-<a href="{% url 'subreddit_update_view' object.id %}">Update</a>
+<a href="{% url 'subreddit_update_view' object.id %}">Update</a><br>
+<a href="{% url 'post_create_view' object.id %}">Create Post</a>
 <h1>{{ object }}</h1>
 <h3>{{ object.description }}</h3> <br>
 {% for post in object.get_recent %}
-<h4>{{ post }}</h4>
+<li><h4><a href="{% url 'post_detail_view' post.id %}">{{ post }}</a></h4></li>
 Created {{ post.post_created|timesince }} ago.
 {% endfor %}
 {% endblock %}
