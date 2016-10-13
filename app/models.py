@@ -12,7 +12,6 @@ class Subreddit(models.Model):
     def __str__(self):
         return self.name
 
-
     def current_count(self):
         return Post.objects.filter(subreddit=self).count()
 
@@ -43,10 +42,9 @@ class Post(models.Model):
         else:
             return False
 
-
     def is_hot(self):
         past_hour = datetime.now() - timedelta(hours=3)
-        if Comment.objects.filter(comment_post=self).filter(comment_created__gt=past_hour).count() > 3:
+        if Comment.objects.filter(comment_post=self).filter(comment_edit__gt=past_hour).count() > 3:
             return True
         else:
             return False
