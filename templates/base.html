@@ -12,7 +12,11 @@
       <div class="container">
         <div class="anchor_tags">
           <a href="{% url 'subreddit_view' %}">Subreddits</a> <br>
-          
+            {% if not request.user.is_authenticated %}
+              <a href="{% url 'login' %}">Login</a>
+            {% else %}
+              <a href="{% url 'logout' %}?next={% url 'index_view' %}">Logout</a>
+            {% endif %}
         </div>
         {% block content %}
         {% endblock %}

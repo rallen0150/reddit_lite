@@ -48,9 +48,9 @@ class Post(models.Model):
     def is_hot(self):
         past_hour = datetime.now() - timedelta(hours=3)
         if Comment.objects.filter(comment_post=self).filter(comment_edit__gt=past_hour).count() > 3:
-            return True
+            return "Hot"
         else:
-            return False
+            return "Not Hot"
 
     def get_comment(self):
         return Comment.objects.filter(comment_post=self)
