@@ -6,14 +6,18 @@
 <h1>{{ object }}</h1>
 <h3>{{ object.post_description }}</h3>
   {{ object.url_page }}<br>
-Is this post recent(within 24 hrs)? {{ object.is_recent }}<br>
-Is post Hot? {{ object.is_hot }} <br> <br>
+  {{ object.is_recent }}<br>
+  {{ object.is_hot }} <br> <br>
 {% for comment in object.get_comment %}
-<li>
-  {{ comment }}<br>
-  <a href="{% url 'comment_update_view' comment.id %}">Update Comment</a>
-  Created {{ comment.comment_created|timesince }} ago.
-  Created By: {{ comment.comment_user }} <br> <br>
-</li>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <li>
+      {{ comment }}<br>
+      <a href="{% url 'comment_update_view' comment.id %}">Update Comment</a>
+      Created {{ comment.comment_created|timesince }} ago.
+      Created By: {{ comment.comment_user }} <br> <br>
+    </li>
+  </div>
+</div>
 {% endfor %}
 {% endblock %}

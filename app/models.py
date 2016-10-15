@@ -41,9 +41,9 @@ class Post(models.Model):
     def is_recent(self):
         last_day = datetime.now() - timedelta(days=1)
         if Post.objects.filter(post_created__gte=last_day):
-            return True
+            return "Recent"
         else:
-            return False
+            return "Not Recent"
 
     def is_hot(self):
         past_hour = datetime.now() - timedelta(hours=3)
@@ -51,6 +51,9 @@ class Post(models.Model):
             return "Hot"
         else:
             return "Not Hot"
+
+    def post_count(self):
+        return Comment.objects.filter(comment_post=self).count()
 
     def get_comment(self):
         return Comment.objects.filter(comment_post=self)

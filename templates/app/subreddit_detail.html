@@ -5,7 +5,11 @@
 <h1>{{ object }}</h1>
 <h3>{{ object.description }}</h3> <br>
 {% for post in object.get_recent %}
-<li><h4><a href="{% url 'post_detail_view' post.id %}">{{ post }}</a></h4></li>
-Created {{ post.post_created|timesince }} ago.
+<div class="panel panel-default">
+  <div class="panel-body">
+      <li><h4><a href="{% url 'post_detail_view' post.id %}">{{ post }} <span class="badge">{{ post.post_count }}</span></a></h4></li>
+      Created {{ post.post_created|timesince }} ago.
+  </div>
+</div>
 {% endfor %}
 {% endblock %}
