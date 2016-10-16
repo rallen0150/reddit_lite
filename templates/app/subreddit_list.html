@@ -6,12 +6,10 @@
 <br>
 <h1>Subreddits</h1>
 {% for sub in object_list %}
-<div class="panel panel-default">
-  <div class="panel-body">
+  <div class="well well-sm">
     <h4><a href="{% url 'subreddit_detail_view' sub.id %}">{{ sub }} <span class="badge">{{ sub.current_count }}</span></a></h4>
     <h5>{{ sub.description }}</h5>
   </div>
-</div>
 
 <br>
 {% endfor %}
