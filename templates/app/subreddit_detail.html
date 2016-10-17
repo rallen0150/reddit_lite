@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<a href="{% url 'subreddit_update_view' object.id %}">Update</a><br>
+<a href="{% url 'subreddit_update_view' object.id %}">Update Subreddit</a><br>
 <a href="{% url 'post_create_view' object.id %}">Create Post</a>
 <h1>{{ object }}</h1>
 <h3>{{ object.description }}</h3> <br>
