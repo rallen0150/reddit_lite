@@ -36,7 +36,7 @@ class PostDetailView(DetailView):
 class PostCreateView(CreateView):
     model = Post
     success_url = '/subreddit'
-    fields = ('title', 'post_description')
+    fields = ['title', 'post_description', 'url_page']
 
     def form_valid(self, form):
         instance = form.save(commit=False)
