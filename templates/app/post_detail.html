@@ -5,7 +5,7 @@
 
 <h1>{{ object }}</h1>
 <h3>{{ object.post_description }}</h3>
-  URL: {{ object.url_page }}<br>
+  URL: <a href="{{ object.url_page }}">{{ object.url_page }}</a><br>
   {{ object.is_recent }}<br>
   {{ object.is_hot }} <br> <br>
 
