@@ -6,11 +6,13 @@
   {% endif %}
   <a href="{% url 'comment_create_view' object.id %}">Add Comment</a> <br>
 {% endif %}
-<h1>{{ object }}</h1>
-<h3>{{ object.post_description }}</h3>
-  URL: <a href="{{ object.url_page }}">{{ object.url_page }}</a><br>
-  {{ object.is_recent }}<br>
-  {{ object.is_hot }} <br> <br>
+<h1 class="title">{{ object }}</h1>
+<h3 class="title">{{ object.post_description }}</h3>
+  <div class="title">
+    URL: <a href="{{ object.url_page }}">{{ object.url_page }}</a><br>
+    {{ object.is_recent }}<br>
+    {{ object.is_hot }} <br> <br>
+  </div>
 
 {% for comment in object.get_comment %}
   <div class="well well-sm">

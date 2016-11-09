@@ -13,7 +13,6 @@
       }
 
       a:hover {
-        background-color: white;
         color: black;
       }
 
@@ -29,19 +28,32 @@
       a {
         color: navy;
       }
+      .badge {
+        float: right;
+      }
+      #subreddits {
+        text-align: center;
+      }
+      .title {
+        text-align: center;
+      }
     </style>
   </head>
   <body>
       <div class="container">
-        <div class="anchor_tags">
-          <a href="{% url 'subreddit_view' %}">Subreddits</a> <br>
-          <a href="{% url 'user_create_view' %}">New User</a> <br>
-            {% if not request.user.is_authenticated %}
-              <a href="{% url 'login' %}">Login</a>
-            {% else %}
-              <a href="{% url 'logout' %}?next={% url 'index_view' %}">Logout</a>
-            {% endif %}
-        </div>
+        <nav class="navbar navbar-default">
+          <div class="container">
+            <a href="{% url 'subreddit_view' %}">Subreddits</a> |
+            <a href="{% url 'user_create_view' %}">New User</a> |
+              {% if not request.user.is_authenticated %}
+                <a href="{% url 'login' %}">Login</a> |
+              {% else %}
+                <a href="{% url 'subreddit_create_view' %}">Create Subreddits</a> |
+                <a href="{% url 'logout' %}?next={% url 'index_view' %}">Logout</a> |
+              {% endif %}
+          </div>
+
+        </nav>
         {% block content %}
         {% endblock %}
       </div>
