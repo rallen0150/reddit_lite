@@ -25,7 +25,7 @@ SECRET_KEY = '%id8+cn@a5--nsq0q1aj93ro6y5s0q79n7!-jb(fg66&-yop&('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['nameless-cove-38788.herokuapp.com', 'localhost']
 
 
 # Application definition
