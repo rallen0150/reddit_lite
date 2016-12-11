@@ -2,12 +2,12 @@
 from django.conf.urls import url, include
 from django.contrib import admin
 
-from app.views import index_view, SubredditView, SubredditDetailView, SubredditCreateView, SubredditUpdateView, \
+from app.views import IndexView, SubredditView, SubredditDetailView, SubredditCreateView, SubredditUpdateView, \
                       PostDetailView, PostCreateView, CommentCreateView, UserCreateView, PostUpdateView, CommentUpdateView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', index_view, name="index_view"),
+    url(r'^$', IndexView.as_view(), name="index_view"),
     url(r'^', include('django.contrib.auth.urls')),
     url(r'^create_user/$', UserCreateView.as_view(), name="user_create_view"),
     url(r'^subreddit$', SubredditView.as_view(), name="subreddit_view"),

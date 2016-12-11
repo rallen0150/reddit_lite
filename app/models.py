@@ -12,6 +12,10 @@ class Subreddit(models.Model):
     def __str__(self):
         return self.name
 
+    @property
+    def get_all_subreddits(self):
+        return self.objects.all()
+
     def current_count(self):
         return Post.objects.filter(subreddit=self).count()
 

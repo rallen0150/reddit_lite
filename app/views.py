@@ -1,14 +1,15 @@
 from django.shortcuts import render
 from app.models import Subreddit, Post, Comment
 
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, TemplateView
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse, reverse_lazy
 # Create your views here.
 
-def index_view(request):
-    return render(request, "index.html")
+class IndexView(TemplateView):
+    template_name = "index.html"
+
 
 class UserCreateView(CreateView):
     model = User
@@ -63,7 +64,7 @@ class PostUpdateView(UpdateView):
     fields = ('title', 'post_description')
 
     def get_success_url(self, **kwargs):
-        return reverse_lazy('post_update_view', args=[int(self.kwargs['pk'])])
+        return reverse_lazy('post_detail_view', args=[int(self.kwargs['pk'])])
 
 
 class CommentCreateView(CreateView):
@@ -85,5 +86,6 @@ class CommentUpdateView(UpdateView):
     # success_url = '/subreddit'
     fields = ('comment', )
 
-    def get_success_url(self, **kwargs):
-        return reverse_lazy('post_detail_view', args=[int(self.kwargs['pk'])])
+    def get_success_url(self, *args, **kwargs):
+        x = Comment.objects.get(id=self.kwargs['pk']).comment_post.id
+        return reverse('post_detail_view', args=[x])
