@@ -73,6 +73,7 @@ WSGI_APPLICATION = 'reddit.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
+import dj_database_url
 
 DATABASES = {
     'default': {
@@ -80,6 +81,10 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+database_config = dj_database_url.config()
+if database_config:
+    DATABASES['default'] = database_config
 
 
 # Password validation
