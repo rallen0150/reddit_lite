@@ -3,4 +3,3 @@ django
 requests
 gunicorn
 dj-database-url
-whitenoise
